@@ -193,12 +193,13 @@ info:
 	@echo "Build mode: DEBUG=$(DEBUG), CRT=$(CRT), SFML=$(SFML)"
 
 _mkdir = test -d $@ || mkdir $@
-mk_outdirs: $(outdir) $(vroot) $(objdir) $(ifcdir) $(exedir); @#
+mk_outdirs: $(outdir) $(vroot) $(objdir) $(ifcdir) $(libdir) $(exedir) ; @#
 # Double colons in order to not fail on possibly identical dirs:
 $(outdir)::; @$(_mkdir)
 $(vroot)::;  @$(_mkdir)
 $(objdir)::; @$(_mkdir)
 $(ifcdir)::; @$(_mkdir)
+$(libdir)::; @$(_mkdir)
 $(exedir)::; @$(_mkdir)
 
 collect_sources:

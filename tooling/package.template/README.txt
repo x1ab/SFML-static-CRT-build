@@ -1,1 +1,0 @@
-﻿-> https://github.com/x1ab/SFML-staticCRT-build/

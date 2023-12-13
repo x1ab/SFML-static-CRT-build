@@ -93,12 +93,11 @@ Your mileage may vary.
 
 #### 4. Run `build`
 
-  You can specify `CRT=dll` to build the original ("half") static libs, and 
-  `DEBUG=1` for a debug version. E.g.:
+  With no options, it will build a non-debug ("release") version (with -O2 and
+  `NDEBUG`), against the static MSVC runtime libs (`-MT`).
 
-	build
-
-  would build the fully static libs in release mode (-DNDEBUG -O2), while
+  Optionally, you can specify `CRT=dll` to build the original ("half") static
+  SFML libs, or `DEBUG=1` for a debug version, e.g.:
 
 	build CRT=dll DEBUG=1
 
