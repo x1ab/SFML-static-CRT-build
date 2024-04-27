@@ -8,7 +8,7 @@ target Windows instance.
 
 IOW, the official SFML/MSVC binaries have been compiled with `-MD` (and `-MDd`
 for DEBUG), whereas this setup builds with `-MT` (and `-MTd`) by default.
-(You can still build for the DLL version of the CRT with `build CRT=dll`.)
+(You can still build for the DLL version of the CRT with `bbuild CRT=dll`.)
 
 Alternatively (in fact: preferably), if you can use CMake, you should just
 run (in the repo dir):
@@ -27,7 +27,14 @@ and call it a day. (Note that the stock CMake build will not name the fully
 static version differently, so you can't have both -MT and -MT libs at the
 same time!)
 
-This tool is for cases when CMake can't be used for some reason or another.
+For convenience there's
+
+	cbuild.cmd
+
+for the above, plus optionally downloading the latest SFML-master snapshot
+from GitHub.
+
+The rest of the instructions is for building without CMake.
 
 ------------------------------------------------------------------------------
 
@@ -85,11 +92,11 @@ but it should be pretty straightforward to do the same for 32-bit, too.
 
 	https://github.com/SFML/SFML/archive/refs/heads/master.zip
 
-  (Note that this is the latest pre-3.0 branch, very much in flux, but
-  still very usable and robust, albeit breaking the API occasionally.)
+  (Note: this should be the latest pre-3.0 branch, very much in flux, but
+  still quite usable and robust, albeit breaking the API occasionally.)
 
   The unpacked repo (should be `SFML-master` -- adjust the build script
-  if it isn't) is expeted to be in the same dir as the `build` script.
+  if it isn't) is expeted to be in the same dir as the build scripts.
 
 
 #### 2. One small "fix"...
@@ -120,7 +127,7 @@ but it should be pretty straightforward to do the same for 32-bit, too.
   (or wherever else you may find any).
 
 
-#### 4. Run `build`
+#### 4. Run `bbuild`
 
   With no options, it will build a non-debug ("release") version (with -O2 and
   `NDEBUG`), against the static MSVC runtime libs (`-MT`).
@@ -128,7 +135,7 @@ but it should be pretty straightforward to do the same for 32-bit, too.
   Optionally, you can specify `CRT=dll` to build the original ("half") static
   SFML libs, or `DEBUG=1` for a debug version, e.g.:
 
-	build CRT=dll DEBUG=1
+	bbuild CRT=dll DEBUG=1
 
   would build for the DLL version of th MSVC runtime, with debug info and
   disabled optimizations.
@@ -166,7 +173,7 @@ hence the strict naming. The current URL of the "canonical" download page:
   https://x1ab.github.io/download/SFML/3.0-pre/custom/
 
 
-#### 6. There's no `build clean`
+#### 6. There's no `bbuild clean`
 
 Just delete the `.build.tmp` dir (or only its build-mode specific subtree
 that you want to fully rebuild).
